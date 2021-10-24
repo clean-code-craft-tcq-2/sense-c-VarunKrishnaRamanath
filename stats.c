@@ -13,7 +13,7 @@ Stats* compute_statistics(const float* numberset, int setlength) {
     s.average = 0.0;
     s.min = FLT_MAX;
     s.max = FLT_MIN;
-    for(LoopIndex = 0; LoopIndex < setlength; setlength++)
+    for(LoopIndex = 0; LoopIndex < setlength; LoopIndex++)
     {
         if(numberset[LoopIndex] < s.min)
         {
