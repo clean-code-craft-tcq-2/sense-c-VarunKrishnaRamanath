@@ -10,22 +10,32 @@ Stats* compute_statistics(const float* numberset, int setlength) {
     double sum = 0.0;
     static Stats s;
 
-    s.average = 0.0;
-    s.min = FLT_MAX;
-    s.max = FLT_MIN;
-    for(LoopIndex = 0; LoopIndex < setlength; LoopIndex++)
+    if(numberset != NULL_PTR)
     {
-        if(numberset[LoopIndex] < s.min)
+        s.average = 0.0;
+        s.min = FLT_MAX;
+        s.max = FLT_MIN;
+        for(LoopIndex = 0; LoopIndex < setlength; LoopIndex++)
         {
-            s.min = numberset[LoopIndex];
+            if(numberset[LoopIndex] < s.min)
+            {
+                s.min = numberset[LoopIndex];
+            }
+            if(numberset[LoopIndex] > s.max)
+            {
+                s.max = numberset[LoopIndex];
+            }
+            sum += numberset[LoopIndex];
         }
-        if(numberset[LoopIndex] > s.max)
-        {
-            s.max = numberset[LoopIndex];
-        }
-        sum += numberset[LoopIndex];
+        s.average = (float)(sum/(float)setlength);
+        
     }
-    s.average = (float)(sum/(float)setlength);
+    else
+    {
+        s.average = NaN;
+        s.min = NaN;
+        s.max = NaN;
+    }
 
     return &s;
 }
