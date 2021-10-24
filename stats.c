@@ -1,6 +1,7 @@
 #include "stats.h"
 #include "float.h"
 #include <stdint.h>
+#include <math.h>
 
 int emailAlertCallCount = 0;
 int ledAlertCallCount = 0;
@@ -10,7 +11,7 @@ Stats* compute_statistics(const float* numberset, int setlength) {
     double sum = 0.0;
     static Stats s;
 
-    if(numberset != NULL_PTR)
+    if(numberset != 0)
     {
         s.average = 0.0;
         s.min = FLT_MAX;
@@ -32,9 +33,9 @@ Stats* compute_statistics(const float* numberset, int setlength) {
     }
     else
     {
-        s.average = NaN;
-        s.min = NaN;
-        s.max = NaN;
+        s.average = NAN;
+        s.min = NAN;
+        s.max = NAN;
     }
 
     return &s;
