@@ -4,10 +4,12 @@
 int emailAlertCallCount = 0;
 int ledAlertCallCount = 0;
 
+static Stats s;
+
 Stats* compute_statistics(const float* numberset, int setlength) {
-    Stats s;
     char LoopIndex = 0;
     double sum = 0.0;
+    static Stats s;
 
     s.average = 0.0;
     s.min = FLT_MAX;
@@ -26,4 +28,24 @@ Stats* compute_statistics(const float* numberset, int setlength) {
     }
     s.average = (float)(sum/(float)setlength);
 
+    return &s;
+}
+
+void check_and_alert(const float maxThreshold, alerter_funcptr alerters[], Stats computedStats)
+{
+    if(computedStats.max > maxThreshold)
+    {
+        alerters[0]();
+        alerters[1]();
+    }
+}
+
+void emailAlerter(void)
+{
+    emailAlertCallCount++;
+}
+
+void ledAlerter(void)
+{
+    ledAlertCallCount++;
 }
