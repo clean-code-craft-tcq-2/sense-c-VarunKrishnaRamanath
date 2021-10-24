@@ -1,13 +1,12 @@
 #include "stats.h"
 #include "float.h"
+#include <stdint.h>
 
 int emailAlertCallCount = 0;
 int ledAlertCallCount = 0;
 
-static Stats s;
-
 Stats* compute_statistics(const float* numberset, int setlength) {
-    char LoopIndex = 0;
+    uint8_t LoopIndex = 0;
     double sum = 0.0;
     static Stats s;
 
