@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 
-#include "catch.hpp"
 #include "stats.h"
+#include "catch.hpp"
 
 #include <stdlib.h>
 #include <math.h>
@@ -25,9 +25,9 @@ TEST_CASE("average is NaN for empty array") {
     float l_min = computedStats.min;
 
     //Design the REQUIRE statement here.
-    REQUIRE(computedStats.average != computedStats.average);
-    REQUIRE(computedStats.max != computedStats.max);
-    REQUIRE(computedStats.min != computedStats.min);
+    REQUIRE(l_average != computedStats.average);
+    REQUIRE(l_max != computedStats.max);
+    REQUIRE(l_min != computedStats.min);
     //Use https://stackoverflow.com/questions/1923837/how-to-use-nan-and-inf-in-c
 }
 
